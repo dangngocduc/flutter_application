@@ -1,0 +1,31 @@
+name: flutter_application
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # StateManagement
+  flutter_bloc:
+  tuple:
+  freezed_annotation:
+
+  # JsonParser
+  json_annotation:
+
+  # Http Client
+  dio:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner:
+  json_serializable:
+  freezed:
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
