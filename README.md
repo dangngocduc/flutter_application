@@ -75,5 +75,6 @@ extension ContextExtensions on BuildContext {
 __This project is config CI/CD with Github Action and build release only for Android.__
 
 Work flow:
-```.github/workflows/dart.yml
+```
+.github/workflows/dart.yml
 ```
