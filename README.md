@@ -1,19 +1,34 @@
 # flutter_application
 
 ## Structure
-- data
-    - __blocs__: Bloc on this applocation
-    - __datasources__: Data provider
-    - __models__: Model Data 
-    - __repositories__: list of repository
+- __data__
+    - _blocs_: Bloc on this applocation
+    - _datasources_: Data provider
+    - _models_: Model Data 
+    - _repositories_: list of repository
 - __pages__: Screen, Page of Application
 - __utils__
 - __widgets__: Component reuse on this app
 - __application.dart__: MaterialApp of this app
 - __main.dart__
 
+## Resource Manager
+```
+https://pub.dev/packages/flutter_gen
+```
+### Homebrew
+Works with MacOS and Linux.
+```sh
+$ brew install FlutterGen/tap/fluttergen
+```
+### Pub Global
+Works with MacOS, Linux and Windows.
+```sh
+$ dart pub global activate flutter_gen
+```
+
 ## Extension
-__path: lib/utils/extensions.dart__
+_path: lib/utils/extensions.dart_
 
 ### BuildContext
 ```
