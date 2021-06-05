@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 extension StateExtensions on State {
-
   ThemeData get theme => Theme.of(context);
 
   TextTheme get textTheme => Theme.of(context).textTheme;
@@ -16,11 +15,9 @@ extension StateExtensions on State {
   MediaQueryData get mediaQueryData => MediaQuery.of(context);
 
   Size get size => MediaQuery.of(context).size;
-
 }
 
 extension ContextExtensions on BuildContext {
-
   ThemeData get theme => Theme.of(this);
 
   TextTheme get textTheme => Theme.of(this).textTheme;
@@ -34,5 +31,4 @@ extension ContextExtensions on BuildContext {
   MediaQueryData get mediaQueryData => MediaQuery.of(this);
 
   Size get size => MediaQuery.of(this).size;
-
 }
