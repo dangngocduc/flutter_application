@@ -70,3 +70,10 @@ extension ContextExtensions on BuildContext {
   Size get size => MediaQuery.of(this).size;
 }
 ```
+
+## CI/CD 
+__This project is config CI/CD with Github Action and build release only for Android.__
+
+Work flow:
+```.github/workflows/dart.yml
+```
