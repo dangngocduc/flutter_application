@@ -26,6 +26,10 @@ Works with MacOS, Linux and Windows.
 ```sh
 $ dart pub global activate flutter_gen
 ```
+### Generate Model and State
+```sh
+$ flutter pub run build_runner build
+```
 
 ## Extension
 _path: lib/utils/extensions.dart_
