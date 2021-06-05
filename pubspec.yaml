@@ -12,12 +12,14 @@ dependencies:
   flutter_bloc:
   tuple:
   freezed_annotation:
-
   # JsonParser
   json_annotation:
-
   # Http Client
   dio:
+  #Svg Loader
+  flutter_svg:
+  # Local Persist
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

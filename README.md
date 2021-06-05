@@ -1,16 +1,22 @@
 # flutter_application
 
 ## Structure
-- __data__
-    - _blocs_: Bloc on this applocation
-    - _datasources_: Data provider
-    - _models_: Model Data 
-    - _repositories_: list of repository
-- __pages__: Screen, Page of Application
-- __utils__
-- __widgets__: Component reuse on this app
-- __application.dart__: MaterialApp of this app
-- __main.dart__
+- assets
+  - icons: start with ic_ 
+  - images: start with image_
+- lib 
+    - __data__
+        - _blocs_: Bloc on this applocation
+        - _datasources_: Data provider
+        - _models_: Model Data, suffix: *_model*
+        - _repositories_: list of repository
+    - __gen__: Gen Assets Management
+    - __pages__: Screen, Page of Application, suffix: *_page*
+    - __utils__
+    - __widgets__: Component reuse on this app, suffix: *_widget*
+    - __application.dart__: MaterialApp of this app
+    - __main.dart__
+
 
 ## Resource Manager
 ```
