@@ -21,12 +21,21 @@ dependencies:
   # Local Persist
   shared_preferences:
 
+  #auth_nav
+  auth_nav:
+    git: https://github.com/dangngocduc/auth_nav
+
+  oauth2_dio:
+    git: https://github.com/dangngocduc/oauth2_dio
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
   json_serializable:
   freezed:
+  flutter_lints: ^1.0.4
 flutter:
   uses-material-design: true
   assets:
