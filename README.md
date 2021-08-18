@@ -8,16 +8,23 @@
     - __data__
         - _blocs_: Bloc on this applocation
         - _datasources_: Data provider
-        - _models_: Model Data, suffix: *_model*
+        - _dto_: Model Data, suffix: *_dto*
         - _repositories_: list of repository
     - __gen__: Gen Assets Management
+    - __domain__
+        - __model__: Model in domain layer, suffix: *_model*
+        - __repository__: repository in domain layer
     - __pages__: Screen, Page of Application, suffix: *_page*
     - __utils__
     - __widgets__: Component reuse on this app, suffix: *_widget*
     - __application.dart__: MaterialApp of this app
+    - __initialize_dependencies.dart__: init dependencies global as local service, bloc, domain repository
     - __main.dart__
 
+## Dependencies
+Init all dependencies global on  `initialize_dependencies.dart`
 
+example: `LocalService`, 'Repository_' of domain layer.
 ## Resource Manager
 ```
 https://pub.dev/packages/flutter_gen

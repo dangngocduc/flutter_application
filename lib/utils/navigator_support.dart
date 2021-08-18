@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /// Support Nested Navigation Back Android
 class NavigatorSupport extends StatefulWidget {
-  static const ROUTE_NAME = 'NavigatorSupport';
 
   final List<Page<dynamic>> pages;
   final PopPageCallback? onPopPage;
@@ -42,7 +41,6 @@ class NavigatorSupport extends StatefulWidget {
 }
 
 class NavigatorSupportState extends State<NavigatorSupport> {
-  static const TAG = 'NavigatorSupport';
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   NavigatorState? _parentNavigator;

@@ -20,7 +20,8 @@ dependencies:
   flutter_svg:
   # Local Persist
   shared_preferences:
-
+  # Simple direct Service Locator
+  get_it:
   #auth_nav
   auth_nav:
     git: https://github.com/dangngocduc/auth_nav
