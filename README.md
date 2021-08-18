@@ -24,7 +24,7 @@
 ## Dependencies
 Init all dependencies global on  `initialize_dependencies.dart`
 
-example: `LocalService`, 'Repository_' of domain layer.
+example: `LocalService`, `Repository_` of domain layer.
 ## Resource Manager
 ```
 https://pub.dev/packages/flutter_gen
