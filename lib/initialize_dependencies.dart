@@ -7,6 +7,7 @@ import 'package:oauth2_dio/oauth2_dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/dto/dto.dart';
+import 'data/repositories/repositories.dart';
 import 'env.dart';
 
 Future initializeDependencies() async {
@@ -21,6 +22,8 @@ Future initializeDependencies() async {
   ));
 
   GetIt.instance.registerSingleton(dio);
+
+  GetIt.instance.registerSingleton(AuthRepository());
 
   //region Local Service
   GetIt.instance.registerSingleton(await SharedPreferences.getInstance());
