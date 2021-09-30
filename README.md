@@ -84,6 +84,20 @@ extension ContextExtensions on BuildContext {
 }
 ```
 
+## Utils
+Generate quick import file for a folder
+1, Edit path of folder need gen quick import
+```
+# Change Folder At Here
+genQuickImport lib/domain
+
+```
+2,
+run shell `gen_quick_import.sh`
+```
+ bash gen_quick_import.sh
+```
+
 ## CI/CD 
 __This project is config CI/CD with Github Action and build release only for Android.__
 

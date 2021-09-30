@@ -1,2 +1,3 @@
-export 'auth/auth_bloc.dart';
-export 'auth/auth_state.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// Read more on README.md/Utils
+export 'auth/auth.dart';

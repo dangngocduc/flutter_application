@@ -6,6 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalService {
   final String kKeyAuth = 'key_auth';
 
+  //NOTE: List key not delete when user logout
+  final List<String> keyExcludes = [];
+
   final SharedPreferences sharedPreferences = GetIt.instance.get();
 
   bool isAuthorized() {
@@ -28,8 +31,11 @@ class LocalService {
     }
   }
 
-  Future clear() {
-    return sharedPreferences.clear();
+  Future clear() async {
+    final keys = sharedPreferences.getKeys();
+    keys.removeAll(keyExcludes);
+    for(final key in keys) {
+      await sharedPreferences.remove(key);
+    }
   }
-
 }
