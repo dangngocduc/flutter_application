@@ -7,8 +7,8 @@ import 'package:flutter_application/pages/main/main_navigator.dart';
 import 'package:flutter_application/pages/splash/app_splash_page.dart';
 import 'package:get_it/get_it.dart';
 import 'themes.dart';
-class Application extends StatefulWidget {
 
+class Application extends StatefulWidget {
   const Application({Key? key}) : super(key: key);
 
   @override
@@ -26,16 +26,14 @@ class _ApplicationState extends State<Application> {
         authorizedBuilder: (context) => const MainNavigator(),
 
         //Flow after user login success
-        splashScreen: AppSplashPage(
-            (context) async {
-              if (GetIt.instance.get<LocalService>().isAuthorized()) {
-                await GetIt.instance.get<AuthBloc>().initializeApp();
-                return AuthNavigationState.authorized();
-              } else {
-                return AuthNavigationState.unAuthorized();
-              }
-            }
-        ),
+        splashScreen: AppSplashPage((context) async {
+          if (GetIt.instance.get<LocalService>().isAuthorized()) {
+            await GetIt.instance.get<AuthBloc>().initializeApp();
+            return AuthNavigationState.authorized();
+          } else {
+            return AuthNavigationState.unAuthorized();
+          }
+        }),
 
         //Flow user login success this page need user NavigatorSupport
         unAuthorizedBuilder: (context) => const AuthenticationNavigator(),

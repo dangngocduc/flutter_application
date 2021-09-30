@@ -12,7 +12,11 @@ class AuthBloc extends Cubit<AuthState> {
   final AuthRepository _authRepository = GetIt.instance.get();
 
   AuthBloc() : super(const AuthState.unAuthorized()) {
-    GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().controller.stream.listen((event) {
+    GetIt.instance
+        .get<Oauth2Manager<AuthenticationDto>>()
+        .controller
+        .stream
+        .listen((event) {
       if (event != null) {
         authNavigationBloc.emit(AuthNavigationState.authorized());
       } else {
@@ -37,7 +41,4 @@ class AuthBloc extends Cubit<AuthState> {
     await _authRepository.logout();
     GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().add(null);
   }
-
-
-
 }

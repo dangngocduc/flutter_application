@@ -7,7 +7,8 @@ class ProfileDto {
 
   ProfileDto(this.userName);
 
-  factory ProfileDto.fromJson(Map<String, dynamic> json) => _$ProfileDtoFromJson(json);
+  factory ProfileDto.fromJson(Map<String, dynamic> json) =>
+      _$ProfileDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileDtoToJson(this);
 }

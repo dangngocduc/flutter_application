@@ -7,7 +7,8 @@ class AuthenticationNavigator extends StatefulWidget {
   const AuthenticationNavigator({Key? key}) : super(key: key);
 
   @override
-  _AuthenticationNavigatorState createState() => _AuthenticationNavigatorState();
+  _AuthenticationNavigatorState createState() =>
+      _AuthenticationNavigatorState();
 }
 
 class _AuthenticationNavigatorState extends State<AuthenticationNavigator> {

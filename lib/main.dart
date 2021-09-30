@@ -11,13 +11,11 @@ void main() async {
 
   await initializeDependencies();
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: GetIt.instance.get<AuthNavigationBloc>()),
-        BlocProvider.value(value: GetIt.instance.get<AuthBloc>())
-      ],
-      child: const Application(),
-    )
-  );
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider.value(value: GetIt.instance.get<AuthNavigationBloc>()),
+      BlocProvider.value(value: GetIt.instance.get<AuthBloc>())
+    ],
+    child: const Application(),
+  ));
 }

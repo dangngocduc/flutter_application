@@ -11,7 +11,8 @@ class AuthenticationDto with OAuthInfoMixin {
 
   AuthenticationDto(this.accessToken, this.refreshToken);
 
-  factory AuthenticationDto.fromJson(Map<String, dynamic> json) => _$AuthenticationDtoFromJson(json);
+  factory AuthenticationDto.fromJson(Map<String, dynamic> json) =>
+      _$AuthenticationDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$AuthenticationDtoToJson(this);
 }

@@ -11,15 +11,8 @@ import 'data/repositories/repositories.dart';
 import 'env.dart';
 
 Future initializeDependencies() async {
-  Dio dio = Dio(
-      BaseOptions(
-          baseUrl: baseURL
-      )
-  );
-  dio.interceptors.add(LogInterceptor(
-      requestBody: true,
-      responseBody: true
-  ));
+  Dio dio = Dio(BaseOptions(baseUrl: baseURL));
+  dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
 
   GetIt.instance.registerSingleton(dio);
 
@@ -32,13 +25,15 @@ Future initializeDependencies() async {
   //endregion
 
   //region OAuth Manager
-  Oauth2Manager<AuthenticationDto> _oauth2manager = Oauth2Manager<AuthenticationDto>(
+  Oauth2Manager<AuthenticationDto> _oauth2manager = Oauth2Manager<
+          AuthenticationDto>(
       currentValue: GetIt.instance.get<LocalService>().getAuthenticationDto(),
       onSave: (value) {
         GetIt.instance.get<LocalService>().saveAuth(value as AuthenticationDto);
       });
 
-  GetIt.instance.registerSingleton<Oauth2Manager<AuthenticationDto>>(_oauth2manager);
+  GetIt.instance
+      .registerSingleton<Oauth2Manager<AuthenticationDto>>(_oauth2manager);
 
   dio.interceptors.add(
     Oauth2Interceptor(
@@ -56,5 +51,4 @@ Future initializeDependencies() async {
   GetIt.instance.registerSingleton(AuthNavigationBloc());
 
   GetIt.instance.registerSingleton(AuthBloc());
-
 }

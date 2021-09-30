@@ -2,9 +2,7 @@ import 'package:auth_nav/auth_nav.dart';
 import 'package:flutter/widgets.dart';
 
 class AppSplashPage extends SplashPage {
-
   AppSplashPage(InitializeApp initializeApp) : super(initializeApp);
-
 
   @override
   _AppSplashPageState createState() => _AppSplashPageState();

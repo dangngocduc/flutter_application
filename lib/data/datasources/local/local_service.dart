@@ -17,7 +17,8 @@ class LocalService {
 
   AuthenticationDto? getAuthenticationDto() {
     if (isAuthorized()) {
-      return AuthenticationDto.fromJson(json.decode(sharedPreferences.getString(kKeyAuth)!));
+      return AuthenticationDto.fromJson(
+          json.decode(sharedPreferences.getString(kKeyAuth)!));
     } else {
       return null;
     }
@@ -27,14 +28,15 @@ class LocalService {
     if (authenticationDto == null) {
       return clear();
     } else {
-      return sharedPreferences.setString(kKeyAuth, json.encode(authenticationDto.toJson()));
+      return sharedPreferences.setString(
+          kKeyAuth, json.encode(authenticationDto.toJson()));
     }
   }
 
   Future clear() async {
     final keys = sharedPreferences.getKeys();
     keys.removeAll(keyExcludes);
-    for(final key in keys) {
+    for (final key in keys) {
       await sharedPreferences.remove(key);
     }
   }
