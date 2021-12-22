@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application/pages/home/home_page.dart';
 import 'package:flutter_application/utils/navigator_support.dart';
+
+import '../pages.dart';
 
 class MainNavigator extends StatefulWidget {
   const MainNavigator({Key? key}) : super(key: key);

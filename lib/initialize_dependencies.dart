@@ -1,11 +1,11 @@
 import 'package:auth_nav/auth_nav.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_application/data/blocs/auth/auth_bloc.dart';
-import 'package:flutter_application/data/datasources/local/local_service.dart';
+import 'package:flutter_application/ui/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
 import 'package:oauth2_dio/oauth2_dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'data/datasource/local/local_service.dart';
 import 'data/dto/dto.dart';
 import 'data/repositories/repositories.dart';
 import 'env.dart';

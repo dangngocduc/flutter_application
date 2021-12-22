@@ -6,17 +6,20 @@
   - images: start with image_
 - lib 
     - __data__
-        - _blocs_: Bloc on this applocation
-        - _datasources_: Data provider
+        - _datasource_: Data provider
+            - local : 
+            - remote : API service 
         - _dto_: Model Data, suffix: *_dto*
-        - _repositories_: list of repository
+        - _repositories_: implement of repository interface on domain layer
     - __gen__: Gen Assets Management
     - __domain__
-        - __model__: Model in domain layer, suffix: *_model*
-        - __repository__: repository in domain layer
-    - __pages__: Screen, Page of Application, suffix: *_page*
+        - __entity__: Model interface, suffix: *_model*
+        - __repository__: repository interface
+    - __ui__    
+        - _blocs_: Bloc on this application
+        - __pages__: Screen, Page of Application, suffix: *_page*
+        - __widgets__: Component reuse on this app, suffix: *_widget*
     - __utils__
-    - __widgets__: Component reuse on this app, suffix: *_widget*
     - __application.dart__: MaterialApp of this app
     - __initialize_dependencies.dart__: init dependencies global as local service, bloc, domain repository
     - __main.dart__

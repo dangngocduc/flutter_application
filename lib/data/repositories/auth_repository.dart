@@ -1,4 +1,4 @@
-import 'package:flutter_application/data/datasources/remote/auth_api_service.dart';
+import 'package:flutter_application/data/datasource/datasource.dart';
 import 'package:flutter_application/data/dto/dto.dart';
 
 class AuthRepository {

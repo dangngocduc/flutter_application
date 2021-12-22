@@ -1,10 +1,11 @@
 import 'package:auth_nav/auth_nav.dart';
-import 'package:flutter_application/data/blocs/auth/auth_state.dart';
 import 'package:flutter_application/data/dto/dto.dart';
 import 'package:flutter_application/data/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:oauth2_dio/oauth2_dio.dart';
+
+import 'auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
   final AuthNavigationBloc authNavigationBloc = GetIt.instance.get();
@@ -33,8 +34,8 @@ class AuthBloc extends Cubit<AuthState> {
 
   Future login(String username, String password) async {
     final auth = await _authRepository.login(username, password);
-    final profile = await _authRepository.profile();
     GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().add(auth);
+    final profile = await _authRepository.profile();
   }
 
   Future logout() async {

@@ -97,6 +97,7 @@ extension StringUtils on String {
     }
     return temp;
   }
+  
   String remoteEndIndex(){
     return substring(0, length-1);
   }
