@@ -1,5 +1,7 @@
 # flutter_application
 
+This template base on Flutter 2.10.3
+
 ## Structure
 - assets
   - icons: start with ic_ 
@@ -104,6 +106,22 @@ run shell `gen_quick_import.sh`
 ```
  bash gen.sh
 ```
+
+## Release App 
+### Change Icon App
+
+Update icon : _assets/images/icon_app.png_
+
+run:
+```
+[fvm] flutter pub run flutter_launcher_icons:main
+```
+
+## Change splash Page on Native 
+
+(https://pub.dev/packages/flutter_native_splash)
+
+[fvm] flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
 ## CI/CD 
 __This project is config CI/CD with Github Action and build release only for Android.__
 

@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+
 /// Returns whether a dynamic value PROBABLY
 /// has the isEmpty getter/method by checking
 /// standard dart types that contains it.
@@ -67,7 +68,7 @@ class MyUtils {
   /// "value":value==null?null:value; someVar.nil will force the null type
   /// if the var is null or undefined.
   /// `nil` taken from ObjC just to have a shorter sintax.
-  static dynamic nil(dynamic s) => s == null ? null : s;
+  static dynamic nil(dynamic s) => s ?? null;
 
   /// Checks if data is null or blank (empty or only contains whitespace).
   static bool? isNullOrBlank(dynamic value) {
@@ -539,7 +540,7 @@ class MyUtils {
       return null;
     }
     final separatedWords =
-    value.split(RegExp(r'[!@#<>?":`~;[\]\\|=+)(*&^%-\s_]+'));
+        value.split(RegExp(r'[!@#<>?":`~;[\]\\|=+)(*&^%-\s_]+'));
     var newString = '';
 
     for (final word in separatedWords) {
@@ -620,18 +621,18 @@ class MyUtils {
   }
 
   static void printFunction(
-      String prefix,
-      dynamic value,
-      String info, {
-        bool isError = false,
-      }) {
+    String prefix,
+    dynamic value,
+    String info, {
+    bool isError = false,
+  }) {
     developer.log('$prefix $value $info $isError'.trim());
   }
 }
 
 typedef PrintFunctionCallback = void Function(
-    String prefix,
-    dynamic value,
-    String info, {
-    bool? isError,
-    });
+  String prefix,
+  dynamic value,
+  String info, {
+  bool? isError,
+});

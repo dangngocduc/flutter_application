@@ -1,0 +1,4 @@
+flutter_native_splash:
+  color: "#2F80ED"
+  image: assets/images/ic_logo_splash.png
+  branding_mode: center

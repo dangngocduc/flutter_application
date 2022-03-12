@@ -12,7 +12,7 @@ class NavigatorSupport extends StatefulWidget {
   final RouteListFactory onGenerateInitialRoutes;
   final TransitionDelegate<dynamic> transitionDelegate;
 
-  NavigatorSupport({
+  const NavigatorSupport({
     Key? key,
     this.pages = const <Page<dynamic>>[],
     this.onPopPage,
@@ -63,9 +63,7 @@ class NavigatorSupportState extends State<NavigatorSupport> {
         onGenerateRoute: widget.onGenerateRoute,
         initialRoute: widget.initialRoute,
         transitionDelegate: widget.transitionDelegate,
-        observers: [
-          // FirebaseAnalyticsObserver(analytics: sl.get<FirebaseAnalytics>())
-        ],
+        observers: widget.observers,
         onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
         onPopPage: widget.onPopPage,
         onUnknownRoute: widget.onUnknownRoute,

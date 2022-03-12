@@ -35,7 +35,7 @@ class AuthBloc extends Cubit<AuthState> {
   Future login(String username, String password) async {
     final auth = await _authRepository.login(username, password);
     GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().add(auth);
-    final profile = await _authRepository.profile();
+    await _authRepository.profile();
   }
 
   Future logout() async {
