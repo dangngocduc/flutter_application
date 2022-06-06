@@ -11,7 +11,7 @@ import 'data/repositories/repositories.dart';
 import 'env.dart';
 
 Future initializeDependencies() async {
-  Dio dio = Dio(BaseOptions(baseUrl: baseURL));
+  Dio dio = Dio(BaseOptions(baseUrl: Env.instance.baseURL));
   dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
 
   GetIt.instance.registerSingleton(dio);

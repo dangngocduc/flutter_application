@@ -129,3 +129,41 @@ Work flow:
 ```
 .github/workflows/dart.yml
 ```
+
+##Config build flavor
+- Flutter command:
+For Android setup:
+...
+  flutter build apk --no-shrink --flavor development --dart-define=FLAVOR=development --target lib/main.dart
+  flutter build apk --no-shrink --flavor development --dart-define=FLAVOR=staging --target lib/main.dart
+  flutter build apk --no-shrink --flavor development --dart-define=FLAVOR=production --target lib/main.dart
+
+  flutter build apk --no-shrink --flavor staging --dart-define=FLAVOR=development --target lib/main.dart
+  flutter build apk --no-shrink --flavor staging --dart-define=FLAVOR=staging --target lib/main.dart
+  flutter build apk --no-shrink --flavor staging --dart-define=FLAVOR=production --target lib/main.dart
+
+  flutter build apk --no-shrink --flavor production --dart-define=FLAVOR=development --target lib/main.dart
+  flutter build apk --no-shrink --flavor production --dart-define=FLAVOR=staging --target lib/main.dart
+  flutter build apk --no-shrink --flavor production --dart-define=FLAVOR=production --target lib/main.dart
+...
+  
+For IOS:
+...
+flutter build ios --flavor development --dart-define=FLAVOR=development --target lib/main.dart
+flutter build ios --flavor development --dart-define=FLAVOR=staging --target lib/main.dart
+flutter build ios --flavor development --dart-define=FLAVOR=production --target lib/main.dart
+
+flutter build ios --flavor staging --dart-define=FLAVOR=staging --target lib/main.dart 
+flutter build ios --flavor staging --dart-define=FLAVOR=development --target lib/main.dart
+flutter build ios --flavor staging --dart-define=FLAVOR=production --target lib/main.dart
+    
+flutter build ios --flavor production --dart-define=FLAVOR=development --target lib/main.dart
+flutter build ios --flavor production --dart-define=FLAVOR=staging --target lib/main.dart
+flutter build ios --flavor production --dart-define=FLAVOR=production --target lib/main.dart
+...
+  
+##Flutter support multi language
+- Use flutter intl and flutter_localizations
+
+
+
