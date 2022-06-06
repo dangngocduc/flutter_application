@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   # StateManagement
   flutter_bloc:
   tuple:
@@ -62,3 +64,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+flutter_intl:
+  enabled: true
