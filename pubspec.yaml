@@ -40,7 +40,7 @@ dependencies:
     git: https://github.com/dangngocduc/oauth2_dio
 
   # Collections and utilities functions and classes related to collections.
-  collection: 1.15.0
+  collection: 1.16.0
 
 
 dev_dependencies:
