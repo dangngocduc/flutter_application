@@ -3,7 +3,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">= 3.5.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -40,8 +40,7 @@ dependencies:
     git: https://github.com/dangngocduc/oauth2_dio
 
   # Collections and utilities functions and classes related to collections.
-  collection: 1.17.1
-
+  collection: 1.19.1
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +50,7 @@ dev_dependencies:
   freezed:
   flutter_lints: 
   flutter_launcher_icons: 
-  flutter_native_splash: 
+  flutter_native_splash: ^2.4.6
 # Config icon application
 flutter_icons:
   android: "launcher_icon"
