@@ -14,5 +14,15 @@
                 "--dart-define=FLAVOR=development",
             ]
         },
+        {
+            "name": "app production",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "production",
+                "--dart-define=FLAVOR=production",
+            ]
+        },
     ]
 }
