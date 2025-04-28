@@ -5,21 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "app",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "app (profile mode)",
+            "name": "app development",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--flavor",
+                "development",
+                "--dart-define=FLAVOR=development",
+            ]
         },
-        {
-            "name": "app (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
     ]
 }
