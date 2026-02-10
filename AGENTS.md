@@ -234,6 +234,8 @@ lib/
 
 4. **Run code generation** and **register in DI**.
 
+> **💡 Pattern Matching with Dart 3**: When working with Freezed state classes, use **Dart 3 switch expressions** instead of the legacy `.when()` and `.map()` methods. Switch expressions provide better IDE support, exhaustive compile-time checking, and more concise syntax. See Task 5 below for examples.
+
 ### Task 5: Create a Page with BLoC
 
 ```dart
@@ -246,17 +248,17 @@ class ProductListPage extends StatelessWidget {
         appBar: AppBar(title: Text('Products')),
         body: BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
-            return state.when(
-              initial: () => SizedBox.shrink(),
-              loading: () => Center(child: CircularProgressIndicator()),
-              loaded: (products) => ListView.builder(
+            return switch (state) {
+              ProductStateInitial() => SizedBox.shrink(),
+              ProductStateLoading() => Center(child: CircularProgressIndicator()),
+              ProductStateLoaded(:final products) => ListView.builder(
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   return ListTile(title: Text(products[index].name));
                 },
               ),
-              error: (message) => Center(child: Text('Error: $message')),
-            );
+              ProductStateError(:final message) => Center(child: Text('Error: $message')),
+            };
           },
         ),
       ),
