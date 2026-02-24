@@ -207,7 +207,7 @@ abstract class AuthState with _$AuthState {
 }
 
 // BLoC
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Cubit<AuthState> {
   // Implementation
 }
 ```
