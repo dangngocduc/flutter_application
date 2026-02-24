@@ -194,23 +194,36 @@ abstract class AuthState with _$AuthState {
 }
 ```
 
-**Usage in BLoC:**
+**Usage in BLoC with Dart 3 Switch Expressions:**
 ```dart
-// Pattern matching
-state.when(
-  initial: () => CircularProgressIndicator(),
-  loading: () => LoadingWidget(),
-  authorized: (profile) => HomeScreen(profile: profile),
-  unAuthorized: () => LoginScreen(),
-  error: (message) => ErrorWidget(message: message),
-);
+// Exhaustive pattern matching with switch expression
+return switch (state) {
+  AuthStateInitial() => CircularProgressIndicator(),
+  AuthStateLoading() => LoadingWidget(),
+  AuthStateAuthorized(:final profile) => HomeScreen(profile: profile),
+  AuthStateUnAuthorized() => LoginScreen(),
+  AuthStateError(:final message) => ErrorWidget(message: message),
+};
 
-// Or maybeWhen
-state.maybeWhen(
-  authorized: (profile) => HomeScreen(profile: profile),
-  orElse: () => LoginScreen(),
-);
+// Partial matching with default case
+return switch (state) {
+  AuthStateAuthorized(:final profile) => HomeScreen(profile: profile),
+  _ => LoginScreen(),
+};
+
+// Alternative: Using switch statement for side effects
+switch (state) {
+  case AuthStateAuthorized(:final profile):
+    print('User authorized: ${profile.userName}');
+  case AuthStateError(:final message):
+    print('Error: $message');
+  default:
+    print('Other state');
+}
 ```
+
+**Note on Legacy Pattern Matching:**
+Freezed still generates `.when()`, `.maybeWhen()`, `.map()`, and `.maybeMap()` methods for backward compatibility, but Dart 3's native switch expressions are now the recommended approach for pattern matching. Switch expressions provide better IDE support, inline type safety, and are more idiomatic in modern Dart code.
 
 ## JSON Serialization with json_serializable
 
@@ -387,14 +400,24 @@ class ApiResult<T> with _$ApiResult<T> {
   const factory ApiResult.error(String message, [int? code]) = _Error;
 }
 
-// Usage
+// Usage with Dart 3 switch expressions
 ApiResult<UserDto> result = await fetchUser();
 
-result.when(
-  loading: () => showLoader(),
-  success: (user) => displayUser(user),
-  error: (message, code) => showError(message),
-);
+switch (result) {
+  case _Loading():
+    showLoader();
+  case _Success(:final data):
+    displayUser(data);
+  case _Error(:final message, :final code):
+    showError(message);
+}
+
+// Or as an expression
+final widget = switch (result) {
+  _Loading() => LoadingWidget(),
+  _Success(:final data) => UserWidget(data),
+  _Error(:final message) => ErrorWidget(message),
+};
 ```
 
 ### Custom Methods in Freezed Classes
@@ -580,7 +603,7 @@ void main() {
 - [ ] Add `part` directive for `.freezed.dart` file
 - [ ] Define union types for different states
 - [ ] Run `build_runner` to generate code
-- [ ] Use in BLoC with `.when()` or `.map()` pattern matching
+- [ ] Use in BLoC with Dart 3 switch expressions for pattern matching
 
 ## Copilot Prompts for Models
 

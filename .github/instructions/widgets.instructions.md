@@ -134,6 +134,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
 ## BLoC Integration Patterns
 
+> **Pattern Matching Best Practice**: This guide uses **Dart 3 switch expressions** for pattern matching on BLoC states. While Freezed still generates legacy methods (`.when()`, `.maybeWhen()`, `.map()`, `.maybeMap()`) for backward compatibility, Dart 3's native switch expressions are now the recommended approach. They provide better IDE support, exhaustive checking at compile time, and more concise syntax.
+
 ### 1. BlocProvider - Providing BLoC to Widget Tree
 
 **Single BLoC:**
@@ -180,24 +182,24 @@ class SignInPage extends StatelessWidget {
 
 ### 2. BlocBuilder - Building UI Based on State
 
-**Basic usage:**
+**Basic usage with Dart 3 switch expressions:**
 ```dart
 class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        return state.when(
-          initial: () => _buildInitialView(),
-          loading: () => _buildLoadingView(),
-          authorized: (profile) => _buildAuthorizedView(profile),
-          unAuthorized: () => _buildLoginForm(),
-          error: (message) => _buildErrorView(message),
-        );
+        return switch (state) {
+          AuthStateInitial() => _buildInitialView(),
+          AuthStateLoading() => _buildLoadingView(),
+          AuthStateAuthorized(:final profile) => _buildAuthorizedView(profile),
+          AuthStateUnAuthorized() => _buildLoginForm(),
+          AuthStateError(:final message) => _buildErrorView(message),
+        };
       },
     );
   }
-  
+
   Widget _buildInitialView() => SizedBox.shrink();
   Widget _buildLoadingView() => Center(child: CircularProgressIndicator());
   Widget _buildAuthorizedView(ProfileDto profile) => HomeScreen();
@@ -221,28 +223,28 @@ BlocBuilder<AuthBloc, AuthState>(
 
 ### 3. BlocListener - Side Effects (Navigation, Snackbars, Dialogs)
 
-**For side effects only (no UI changes):**
+**For side effects only (no UI changes) with Dart 3 switch statements:**
 ```dart
 class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        state.when(
-          initial: () {},
-          loading: () {},
-          authorized: (profile) {
+        switch (state) {
+          case AuthStateInitial():
+          case AuthStateLoading():
+            break;
+          case AuthStateAuthorized(:final profile):
             // Navigate to home
             Navigator.of(context).pushReplacementNamed('/home');
-          },
-          unAuthorized: () {},
-          error: (message) {
+          case AuthStateUnAuthorized():
+            break;
+          case AuthStateError(:final message):
             // Show error snackbar
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message)),
             );
-          },
-        );
+        }
       },
       child: _buildContent(),
     );
@@ -270,25 +272,29 @@ BlocListener<AuthBloc, AuthState>(
 
 ### 4. BlocConsumer - Combine Builder and Listener
 
-**When you need both UI updates and side effects:**
+**When you need both UI updates and side effects with Dart 3 switch:**
 ```dart
 BlocConsumer<AuthBloc, AuthState>(
   listener: (context, state) {
-    // Handle side effects
-    state.whenOrNull(
-      authorized: (profile) => Navigator.of(context).pushReplacementNamed('/home'),
-      error: (message) => _showErrorDialog(context, message),
-    );
+    // Handle side effects with partial matching
+    switch (state) {
+      case AuthStateAuthorized(:final profile):
+        Navigator.of(context).pushReplacementNamed('/home');
+      case AuthStateError(:final message):
+        _showErrorDialog(context, message);
+      default:
+        break;
+    }
   },
   builder: (context, state) {
-    // Build UI
-    return state.when(
-      initial: () => _buildInitial(),
-      loading: () => _buildLoading(),
-      authorized: (profile) => _buildSuccess(profile),
-      unAuthorized: () => _buildLoginForm(),
-      error: (message) => _buildError(message),
-    );
+    // Build UI with exhaustive matching
+    return switch (state) {
+      AuthStateInitial() => _buildInitial(),
+      AuthStateLoading() => _buildLoading(),
+      AuthStateAuthorized(:final profile) => _buildSuccess(profile),
+      AuthStateUnAuthorized() => _buildLoginForm(),
+      AuthStateError(:final message) => _buildError(message),
+    };
   },
 )
 ```
@@ -431,16 +437,16 @@ children: [
 ],
 
 // Using ternary
-child: isLoading 
-    ? CircularProgressIndicator() 
+child: isLoading
+    ? CircularProgressIndicator()
     : ContentWidget(),
 
-// Using state pattern matching
-state.when(
-  loading: () => LoadingWidget(),
-  success: (data) => DataWidget(data),
-  error: (message) => ErrorWidget(message),
-),
+// Using state pattern matching with switch expressions
+switch (state) {
+  LoadingState() => LoadingWidget(),
+  SuccessState(:final data) => DataWidget(data),
+  ErrorState(:final message) => ErrorWidget(message),
+},
 ```
 
 ## Using Context Extensions
@@ -562,18 +568,18 @@ class UserListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        return state.when(
-          initial: () => SizedBox.shrink(),
-          loading: () => Center(child: CircularProgressIndicator()),
-          loaded: (users) => ListView.builder(
+        return switch (state) {
+          UserStateInitial() => SizedBox.shrink(),
+          UserStateLoading() => Center(child: CircularProgressIndicator()),
+          UserStateLoaded(:final users) => ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, index) {
               final user = users[index];
               return UserListItem(user: user);
             },
           ),
-          error: (message) => Center(child: Text('Error: $message')),
-        );
+          UserStateError(:final message) => Center(child: Text('Error: $message')),
+        };
       },
     );
   }
@@ -639,14 +645,14 @@ Navigator.of(context).pop(result);
 ```dart
 BlocListener<AuthBloc, AuthState>(
   listener: (context, state) {
-    state.whenOrNull(
-      authorized: (profile) {
+    switch (state) {
+      case AuthStateAuthorized(:final profile):
         Navigator.of(context).pushReplacementNamed('/home');
-      },
-      unAuthorized: () {
+      case AuthStateUnAuthorized():
         Navigator.of(context).pushReplacementNamed('/login');
-      },
-    );
+      default:
+        break;
+    }
   },
   child: child,
 )
